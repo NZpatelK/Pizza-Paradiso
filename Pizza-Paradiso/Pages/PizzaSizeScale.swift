@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 struct PizzaSizeScale: View {
-    private let pizzaImgs = ["pizza-1", "pizza-2", "pizza-3", "pizza-4"]
     var body: some View {
         VStack{
             ZStack {
@@ -25,7 +24,46 @@ struct PizzaSizeScale: View {
         }
         HStack {
             ZStack{
-                
+                Button{
+                    print("Tapped")
+                } label: {
+                    Capsule()
+                    .frame(width: 50, height: 50)
+                    .foregroundColor(.orange)
+                    .overlay(
+                    Text("S")
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(Color.white)
+                    )
+                }
+            }
+            ZStack{
+                Button{
+                    print("Tapped")
+                } label: {
+                    Capsule()
+                    .frame(width: 50, height: 50)
+                    .foregroundColor(.gray)
+                    .overlay(
+                    Text("M")
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(Color.white)
+                    )
+                }
+            }
+            ZStack{
+                Button{
+                    print("Tapped")
+                } label: {
+                    Capsule()
+                    .frame(width: 50, height: 50)
+                    .foregroundColor(.gray)
+                    .overlay(
+                    Text("L")
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(Color.white)
+                    )
+                }
             }
         }
     }
