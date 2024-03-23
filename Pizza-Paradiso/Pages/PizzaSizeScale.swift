@@ -9,63 +9,82 @@ import Foundation
 import SwiftUI
 
 struct PizzaSizeScale: View {
+    
+    @State private var pizzaSize: CGFloat = 280
+    @State private var panSize: CGFloat = 300
+    @State private var isClicked:Bool = false
+    
     var body: some View {
-        VStack{
+        VStack(){
             ZStack {
                 Image("pan")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 300, height: 300)
+                    .frame(width: panSize, height: panSize)
+                    .animation(isClicked ? Animation.interpolatingSpring(stiffness: 100, damping: 5, initialVelocity: 0) : .none)
                 Image("pizza-1")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 280, height: 280)
+                    .frame(width: pizzaSize, height: pizzaSize)
+                    .animation(isClicked ? Animation.interpolatingSpring(stiffness: 100, damping: 5, initialVelocity: 0) : .none)
+                 
             }
         }
+        Spacer()
         HStack {
             ZStack{
-                Button{
-                    print("Tapped")
-                } label: {
+                Button(action:  {
+                    panSize = 300
+                    pizzaSize = 280
+                    isClicked = true
+                })
+                {
                     Capsule()
-                    .frame(width: 50, height: 50)
-                    .foregroundColor(.orange)
-                    .overlay(
-                    Text("S")
-                        .font(.system(size: 16, weight: .semibold))
-                        .foregroundColor(Color.white)
-                    )
+                        .frame(width: 50, height: 50)
+                        .foregroundColor(.orange)
+                        .overlay(
+                            Text("S")
+                                .font(.system(size: 16, weight: .semibold))
+                                .foregroundColor(Color.white)
+                        )
                 }
             }
             ZStack{
-                Button{
-                    print("Tapped")
-                } label: {
+                Button(action:  {
+                    panSize = 350
+                    pizzaSize = 330
+                    isClicked = true
+                })
+                {
                     Capsule()
-                    .frame(width: 50, height: 50)
-                    .foregroundColor(.gray)
-                    .overlay(
-                    Text("M")
-                        .font(.system(size: 16, weight: .semibold))
-                        .foregroundColor(Color.white)
-                    )
+                        .frame(width: 50, height: 50)
+                        .foregroundColor(.gray)
+                        .overlay(
+                            Text("M")
+                                .font(.system(size: 16, weight: .semibold))
+                                .foregroundColor(Color.white)
+                        )
                 }
             }
             ZStack{
-                Button{
-                    print("Tapped")
-                } label: {
+                Button(action:  {
+                    panSize = 400
+                    pizzaSize = 380
+                    isClicked = true
+                })
+                {
                     Capsule()
-                    .frame(width: 50, height: 50)
-                    .foregroundColor(.gray)
-                    .overlay(
-                    Text("L")
-                        .font(.system(size: 16, weight: .semibold))
-                        .foregroundColor(Color.white)
-                    )
+                        .frame(width: 50, height: 50)
+                        .foregroundColor(.gray)
+                        .overlay(
+                            Text("L")
+                                .font(.system(size: 16, weight: .semibold))
+                                .foregroundColor(Color.white)
+                        )
                 }
             }
         }
+        Spacer()
     }
     
 }
