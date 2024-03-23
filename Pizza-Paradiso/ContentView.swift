@@ -52,7 +52,7 @@ struct ContentView: View {
             Image("pan")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 300, height: 300)
+                .frame(width: 250, height: 250)
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 4) {
                     ForEach(pizzaImgs.indices, id: \.self) { index in
@@ -60,10 +60,10 @@ struct ContentView: View {
                             Image(pizzaImgs[index])
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .frame(width: 280, height: 280)
+                                .frame(width: 240, height: 240)
                                 .rotationEffect(Angle(degrees: Double((geo.frame(in: .global).midX - scrollOffset) / UIScreen.main.bounds.width) * 90))
                         }
-                        .frame(width: 280, height: 280)
+                        .frame(width: 240, height: 240)
                     }
                     .containerRelativeFrame(.horizontal, count: 1, spacing: 4)
                 }
@@ -74,7 +74,6 @@ struct ContentView: View {
                     }
                 }
                 .onChange(of: scrollOffset) { _ in
-                    // Ensure scrollOffset does not exceed content width
                     if scrollOffset > UIScreen.main.bounds.width * CGFloat(pizzaImgs.count - 1) {
                         scrollOffset = UIScreen.main.bounds.width * CGFloat(pizzaImgs.count - 1)
                     }
