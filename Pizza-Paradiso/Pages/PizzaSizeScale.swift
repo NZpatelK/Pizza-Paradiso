@@ -21,17 +21,17 @@ struct PizzaSizeScale: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: panSize, height: panSize)
-                    .animation(isClicked ? Animation.interpolatingSpring(stiffness: 100, damping: 5, initialVelocity: 0) : .none)
+                    .animation(isClicked ? Animation.interpolatingSpring(stiffness: 300, damping:8 , initialVelocity: 0) : .none)
                 Image("pizza-1")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: pizzaSize, height: pizzaSize)
-                    .animation(isClicked ? Animation.interpolatingSpring(stiffness: 100, damping: 5, initialVelocity: 0) : .none)
+                    .animation(isClicked ? Animation.interpolatingSpring(stiffness: 300, damping: 8, initialVelocity: 0) : .none)
                  
             }
         }
         Spacer()
-        HStack {
+        HStack(spacing: 20) {
             ZStack{
                 Button(action:  {
                     panSize = 300
