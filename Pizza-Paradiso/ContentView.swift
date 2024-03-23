@@ -11,7 +11,8 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
                     List {
-                        NavigationLink(destination: PizzaRotateSlide()) {
+                        NavigationLink(
+                            destination: PizzaRotateSlide()) {
                             Text("Pizza Rotation Slide")
                         }
                         NavigationLink(
@@ -19,6 +20,11 @@ struct ContentView: View {
                             label: {
                                 Text("Pizza Scale Up Slide")
                             })
+                    NavigationLink(
+                        destination: PizzaSizeScale(),
+                        label: {
+                            Text("Pizza Size Scale")
+                        })
                     }
                     .navigationTitle("Main Menu")
                 }
