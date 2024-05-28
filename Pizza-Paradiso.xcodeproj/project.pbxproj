@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D332F152C05AF270049C66A /* PizzaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D332F142C05AF270049C66A /* PizzaApp.swift */; };
 		7D97B66C2BAE7BF20073686F /* Pizza_ParadisoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D97B66B2BAE7BF20073686F /* Pizza_ParadisoApp.swift */; };
 		7D97B66E2BAE7BF20073686F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D97B66D2BAE7BF20073686F /* ContentView.swift */; };
 		7D97B6702BAE7BFA0073686F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D97B66F2BAE7BFA0073686F /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7D332F142C05AF270049C66A /* PizzaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PizzaApp.swift; sourceTree = "<group>"; };
 		7D97B6682BAE7BF20073686F /* Pizza-Paradiso.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pizza-Paradiso.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D97B66B2BAE7BF20073686F /* Pizza_ParadisoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pizza_ParadisoApp.swift; sourceTree = "<group>"; };
 		7D97B66D2BAE7BF20073686F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				7D97B67A2BAE9C980073686F /* PizzaRotateSlide.swift */,
 				7D97B67C2BAEA1830073686F /* PizzaScaleUpSlide.swift */,
 				7DD576D42BAF86B1004DFF4D /* PizzaSizeScale.swift */,
+				7D332F142C05AF270049C66A /* PizzaApp.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -154,6 +157,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D332F152C05AF270049C66A /* PizzaApp.swift in Sources */,
 				7DD576D52BAF86B1004DFF4D /* PizzaSizeScale.swift in Sources */,
 				7D97B66E2BAE7BF20073686F /* ContentView.swift in Sources */,
 				7D97B67B2BAE9C980073686F /* PizzaRotateSlide.swift in Sources */,
