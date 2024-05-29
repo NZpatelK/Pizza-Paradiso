@@ -22,14 +22,18 @@ struct PizzaApp: View {
                     Image("pan")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 300, height: 300)
+//                        .frame(width: 300, height: 300)
+                        .frame(width: panSize, height: panSize)
+                        .animation(isSelected ? Animation.interpolatingSpring(stiffness: 300, damping:10, initialVelocity: 0) : .none)
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack{
                             ForEach (pizzaImgs, id: \.self) { pizza in
                                 Image(pizza)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
-                                    .frame(width: 280, height: 280)
+//                                    .frame(width: 280, height: 280)
+                                    .frame(width: pizzaSize, height: pizzaSize)
+                                    .animation(isSelected ? Animation.interpolatingSpring(stiffness: 300, damping: 10, initialVelocity: 0): .none)
                                     .containerRelativeFrame(.horizontal, count: 1, spacing: 4)
                                     .scrollTransition{content, phase in
                                         content
