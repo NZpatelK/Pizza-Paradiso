@@ -38,6 +38,9 @@ struct PizzaApp: View {
     @State private var Selected:String = "S"
     @State private var isSelected:Bool = false
     
+    @State var ddd = ""
+    @State var currentPostion: CGFloat = 0
+    
     
     var body: some View {
         GeometryReader{ geometry in
@@ -77,6 +80,13 @@ struct PizzaApp: View {
                         .scrollTargetLayout()
                     }
                     .scrollTargetBehavior(.viewAligned)
+                    .simultaneousGesture(
+                           DragGesture().onChanged({
+                               let isScrollDown = 0 < $0.translation.width
+                               currentPostion = $0.translation.width
+                               ddd = "\(isScrollDown)"
+                           })
+                    )
                 }
             }
             .position(x: geometry.size.width / 2, y: 320)
@@ -86,7 +96,7 @@ struct PizzaApp: View {
             ZStack {
                 VStack (spacing: 10){
                     
-                    Text("Vegetrain Pizza")
+                    Text("Vegetrain Pizza - \(ddd)")
                         .font(.system(size: 26, weight: .heavy))
                         .foregroundStyle(Color(CGColor(genericCMYKCyan: 0, magenta: 0, yellow: 0, black: 0, alpha: 1)))
                         .tracking(4)
@@ -97,7 +107,6 @@ struct PizzaApp: View {
                         .tracking(4)
                 }
                 .position(x: geometry.size.width/2, y: 60)
-                
                 
                 VStack{
                     HStack(spacing: 20) {
