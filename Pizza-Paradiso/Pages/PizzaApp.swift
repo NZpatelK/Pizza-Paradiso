@@ -38,8 +38,6 @@ struct PizzaApp: View {
     @State private var Selected:String = "S"
     @State private var isSelected:Bool = false
     
-
-    private let pizzaImgs = ["pizza-1", "pizza-2", "pizza-3", "pizza-4"]
     
     var body: some View {
         GeometryReader{ geometry in
