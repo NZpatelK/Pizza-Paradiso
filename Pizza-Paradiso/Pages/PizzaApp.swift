@@ -16,16 +16,17 @@ struct Pizza: Identifiable, Codable, Hashable {
     var l_price: Float
 }
 
+
 class ViewModel: ObservableObject {
     @Published var pizza: [Pizza]
 
     init() {
         // Initialize ViewModel with some initial data
         self.pizza = [
-            Pizza(img: "pizza-1", name: "John", s_price: 30.00, m_pirce: 45.00, l_price: 56.00 ),
-            Pizza(img: "pizza-2", name: "Alice", s_price: 25.00, m_pirce: 35.00, l_price: 55.00),
-            Pizza(img: "pizza-3", name: "isa", s_price: 25.00, m_pirce: 35.00, l_price: 55.00),
-            Pizza(img: "pizza-4", name: "gha", s_price: 25.00, m_pirce: 35.00, l_price: 55.00)
+            Pizza(img: "pizza-1", name: "pepperoni pizza", s_price: 15.99, m_pirce: 20.99, l_price: 28.99 ),
+            Pizza(img: "pizza-2", name: "premium pepperoni", s_price: 25.50, m_pirce: 32.50, l_price: 40.50),
+            Pizza(img: "pizza-3", name: "Chesse Pizza", s_price: 10.00, m_pirce: 15.00, l_price: 18.00),
+            Pizza(img: "pizza-4", name: "Vege Pizza", s_price: 12.99, m_pirce: 18.99, l_price: 24.99)
         ]
     }
 }
@@ -37,9 +38,12 @@ struct PizzaApp: View {
     @State private var SelectedColor: Color = Color(red: 0.8, green: 0, blue: 0, opacity: 1)
     @State private var Selected:String = "S"
     @State private var isSelected:Bool = false
+    @State private var animate: Bool = false
     
-    @State var ddd = ""
     @State var currentPostion: CGFloat = 0
+    @State private var currentSize: KeyPath<Pizza, Float> = \.s_price
+    @State var currentPizza:Int = 0
+    @State private var swipeDirection: CGFloat = 0
     
     
     var body: some View {
@@ -84,7 +88,18 @@ struct PizzaApp: View {
                            DragGesture().onChanged({
                                let isScrollDown = 0 < $0.translation.width
                                currentPostion = $0.translation.width
-                               ddd = "\(isScrollDown)"
+                               if isScrollDown {
+                                   if currentPizza > 0 {
+                                       currentPizza -= 1
+                                       swipeDirection = -1
+                                   }
+                               } else {
+                                   if currentPizza < viewModel.pizza.count - 1 {
+                                       currentPizza += 1
+                                       swipeDirection = 1
+                                   }
+                               }
+                               swipeDirection = 0
                            })
                     )
                 }
@@ -96,15 +111,20 @@ struct PizzaApp: View {
             ZStack {
                 VStack (spacing: 10){
                     
-                    Text("Vegetrain Pizza - \(ddd)")
+                    Text("\(viewModel.pizza[currentPizza].name)")
                         .font(.system(size: 26, weight: .heavy))
                         .foregroundStyle(Color(CGColor(genericCMYKCyan: 0, magenta: 0, yellow: 0, black: 0, alpha: 1)))
+                        .textCase(.uppercase)
                         .tracking(4)
+                        .transition(.slide)
+                        .animation(.linear, value: currentPizza)
                     
-                    Text("$20.00")
+                    Text("$\(String(format: "%.2f", viewModel.pizza[currentPizza][keyPath: currentSize]))")
                         .font(.system(size: 24, weight: .semibold))
                         .foregroundStyle(Color(CGColor(genericCMYKCyan: 0, magenta: 0, yellow: 0, black: 0, alpha: 1)))
                         .tracking(4)
+                        .transition(.slide)
+                        .animation(.linear, value: currentPizza)
                 }
                 .position(x: geometry.size.width/2, y: 60)
                 
@@ -116,6 +136,7 @@ struct PizzaApp: View {
                                 pizzaSize = 280
                                 Selected = "S"
                                 isSelected = true
+                                currentSize = \.s_price
                             })
                             {
                                 Capsule()
@@ -141,6 +162,7 @@ struct PizzaApp: View {
                                 pizzaSize = 330
                                 Selected = "M"
                                 isSelected = true
+                                currentSize = \.m_pirce
                             })
                             {
                                 Capsule()
@@ -166,6 +188,7 @@ struct PizzaApp: View {
                                 pizzaSize = 380
                                 Selected = "L"
                                 isSelected = true
+                                currentSize = \.l_price
                             })
                             {
                                 Capsule()
@@ -196,6 +219,20 @@ struct PizzaApp: View {
             .position(x: geometry.size.width/2  ,y: geometry.size.height-50)
             
         }.background(Color(red: 1, green: 0.63, blue: 0, opacity: 0.5))
+        
+        Button(action:  {
+        })
+        {
+            Capsule()
+                .frame(width: 300, height: 50)
+                .foregroundColor(Color.white)
+                .shadow(color: Color.black.opacity(0.2), radius: 4, y: 4)
+                .overlay(
+                    Text("Add Cart")
+                        .font(.system(size: 26, weight: .regular))
+                        .foregroundColor(Selected == "L" ? Color.white : Color.black)
+                )
+        }
        
     }
 }
